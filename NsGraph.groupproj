@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{F8D6BC0E-B43A-4265-B233-CD691EC6A92E}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="NsGraphFMX.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="NsGraphVCL.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="NsGraphFMX">
+        <MSBuild Projects="NsGraphFMX.dproj"/>
+    </Target>
+    <Target Name="NsGraphFMX:Clean">
+        <MSBuild Projects="NsGraphFMX.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="NsGraphFMX:Make">
+        <MSBuild Projects="NsGraphFMX.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="NsGraphVCL">
+        <MSBuild Projects="NsGraphVCL.dproj"/>
+    </Target>
+    <Target Name="NsGraphVCL:Clean">
+        <MSBuild Projects="NsGraphVCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="NsGraphVCL:Make">
+        <MSBuild Projects="NsGraphVCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="NsGraphFMX;NsGraphVCL"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="NsGraphFMX:Clean;NsGraphVCL:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="NsGraphFMX:Make;NsGraphVCL:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
